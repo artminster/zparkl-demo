@@ -1,0 +1,6 @@
+[submodule "artminster"]
+	path = artminster
+	url = git@github.com:artminster/artminster.git
+[submodule "allauth"]
+	path = allauth
+	url = git@github.com:artminster/django-allauth.git

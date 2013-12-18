@@ -1,0 +1,2 @@
+#!/bin/sh
+python ./zparkl_demo/configs/${DEPLOYMENT_TARGET:="common"}/manage.py $*
