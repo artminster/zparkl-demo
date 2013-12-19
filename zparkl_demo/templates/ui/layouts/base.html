@@ -1,4 +1,6 @@
-{% load cache django_static cms_tags sekizai_tags %}
+{% load cache django_static cms_tags sekizai_tags posts_tags %}
+{% get_post as post %}
+
 <!DOCTYPE html>
 <!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
 <!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
@@ -41,54 +43,18 @@
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 		<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
 		<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+		
+		<link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,700|Dosis:200,300' rel='stylesheet' type='text/css'>
 	</head>
 
 	<body>
-		{% slimcontent %}
-		{% include "ui/fragments/header.html" %}
-
-		<div class="container">
-			{% block page_title_outer %}
-			<div class="page-header">
-			  <h1>{% block page_title %}{% endblock %}</h1>
-			</div>
-			{% endblock %}
-
-			{% block content_full_width %}{% endblock %}
-
-			<div class="row">
-				<div class="span9">
-					{% block content %}{% endblock %}
-				</div>
-
-				<div class="span3">
-					{% block sidebar %}{% endblock %}
-				</div>
-			</div>
-
-			{% include "ui/fragments/footer.html" %}
-		</div> <!-- /container -->
-		{% endslimcontent %}
+		{% block content_full_width %}
+		{% endblock %}
 
 		{% slimall %}
 		<script src="js/lib/bootstrap.min.js"></script>
 		{% endslimall %}
 
-		{% slimcontent "js" %}
-		{% if not settings.DEBUG and not request.user.is_staff and settings.GOOGLE_ANALYTICS_CODE %}
-			<!-- asynchronous google analytics -->
-			<script>
-			 var _gaq = [['_setAccount', '{{settings.GOOGLE_ANALYTICS_CODE}}'], ['_trackPageview']];
-			 (function(d, t) {
-			  var g = d.createElement(t),
-				  s = d.getElementsByTagName(t)[0];
-			  g.async = true;
-			  g.src = '//www.google-analytics.com/ga.js';
-			  s.parentNode.insertBefore(g, s);
-			 })(document, 'script');
-			</script>
-		{% endif %}
-		{% endslimcontent %}
 		{% block extra_js %}{% endblock %}
 		{% block extra_body %}{% endblock %}
 		{% render_block "js" %}

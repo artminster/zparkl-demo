@@ -5,7 +5,7 @@ Base configuration
 """
 env.project_name = 'zparkl_demo'
 env.python = 'python2.6'
-env.repository_url = 'ssh://sls@slsapp.com:1234/artminster/zparkl_demo.git'
+env.repository_url = 'ssh://git@github.com:artminster/zparkl-demo.git'
 
 """
 Environments
@@ -16,7 +16,7 @@ def production():
     """
     env.settings = 'production'
     env.user = 'artminster'
-    env.hosts = ['production.artminster.com']
+    env.hosts = ['nelsonmonteiro.net']
     env.path = '/home/artminster/sites/%(project_name)s' % env
     env.env_path = '%(path)s/env' % env
     env.repo_path = '%(path)s/repository' % env

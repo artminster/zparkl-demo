@@ -10,8 +10,9 @@ sitemaps = {
 # zparkl_demo apps
 urlpatterns = (
 	url(r'^', include('apps.zparkl_demo.urls')),
+	url(r'^post/', include('apps.posts.urls')),
 	url(r'^accounts/', include('apps.zparkl_demo_profile.urls')),
-	url(r'^shop/', include('apps.myshop.urls')),
+	#url(r'^shop/', include('apps.myshop.urls')),
 )
 
 if "artminster.contrib.billing" in settings.INSTALLED_APPS:

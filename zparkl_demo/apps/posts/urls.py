@@ -4,5 +4,5 @@ from django.conf import settings
 
 from views import *
 urlpatterns = patterns('',
-	url(r"^$", Home.as_view(),  name="home"),
+    url(r"^(?P<post_id>\d+)/post-new-comment/$", CommentCreateView.as_view(),  name="post_new_comment"),
 )

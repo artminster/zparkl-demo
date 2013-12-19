@@ -15,7 +15,7 @@ STATIC_ROOT = os.path.join(SITE_ROOT, "static")
 ADMIN_MEDIA_PREFIX = "/static/admin/"
 MEDIA_ROOT = os.path.join(SITE_ROOT, "media")
 
-SECRET_KEY = '-x83)5-^cugn@*t6gh%76j@cb)zj)q7l_rm!%3=)@sw&v&d_ww'
+SECRET_KEY = '-x83)5-^pome@*mu46%76j@cb)zj)q7l_rm!%3=)@sw&v&d_ww'
 
 ADMINS = (('ARTMINSTER Dev', 'dev@artminster.com')),
 MANAGERS = ('ARTMINSTER Dev', 'dev@artminster.com'),
@@ -23,7 +23,7 @@ MANAGERS = ('ARTMINSTER Dev', 'dev@artminster.com'),
 PROJECT_SITE_NAME = 'zparkl_demo'
 CONTACT_EMAIL = "info@zparkl_demo.com"
 PROJECT_DOMAIN = "http://127.0.0.1:8000"
-DEFAULT_PROFILE_IMAGE = os.path.join(MEDIA_ROOT, 'uploads/zparkl_demo_defaults/profile_portrait_default.png')
+DEFAULT_PROFILE_IMAGE = 'uploads/zparkl_demo_defaults/profile_portrait_default.png'
 
 DATABASES = {
 	'default': {
@@ -43,6 +43,7 @@ INSTALLED_APPS += (
 	# Local Project Apps
 	'apps.zparkl_demo_profile',
 	'apps.zparkl_demo',
+	'apps.posts',
 )
 DISABLED_APPS = ()
 
@@ -59,7 +60,7 @@ AUTH_PROFILE_MODULE = 'zparkl_demo_profile.UserProfile'
 # GOOGLE API & ANALYTICS SETTINGS
 ###########################################################################################
 GOOGLE_ANALYTICS_CODE = None
-GOOGLE_MAPS_API_KEY = "AIzaSyBg7rZjToQyi9izk13QfLegTueVEuWxfa0"
+GOOGLE_MAPS_API_KEY = ""
 
 
 # CACHE SETTINGS
@@ -112,6 +113,9 @@ FILEBROWSER_VERSIONS = {
 
 	'box-image-list-item': { 'width': 75, 'height': 41, 'opts': 'crop upscale' },
 	'box-main-image-list-item': { 'width': 124, 'height': 93, 'opts': 'crop upscale' },
+
+	'post-image': { 'width': 858, 'height': 571, 'opts': 'crop upscale' },
+	'profile-image-thumb': { 'width': 50, 'height': 50, 'opts': 'crop upscale' },
 }
 FILEBROWSER_ADMIN_VERSIONS = [
 	'thumb', 'small','medium','large',
@@ -122,6 +126,7 @@ FILEBROWSER_ADMIN_VERSIONS = [
 ###########################################################################################
 CMS_TEMPLATES = (
 	('cms/standard_page.html', 'Standard Page'),
+	('zparkl_demo/home/index.html', 'Homepage'),
 )
 
 

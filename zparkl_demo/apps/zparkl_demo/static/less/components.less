@@ -1,0 +1,173 @@
+// VARIABLES
+@blue: rgb(1, 180, 213);
+@white: #fff;
+@light-gray: #fcfcff;
+@light-blue: #fcfcff;
+@line-color: #ddf;
+@text-color: #335;
+@shadow: rgba(0,0,0,.1);
+@dark-shadow: rgba(0,0,0,.4);
+@easing: ease-out;
+@font-family: "Open Sans", Helvetica, Arial, sans-serif;
+@font-family-title: Dosis, Helvetica, Arial, sans-serif;
+
+body {
+	background: @light-blue;
+	font-family: @font-family;
+	font-weight: 300;
+	font-size: 16px;
+	line-height: 24px;
+	color: @text-color;
+	
+	.zparkl-logo {
+		display: inline-block;
+		width: 231px;
+		height: 86px;
+		background: url('../img/logo.png') no-repeat;
+	}
+	
+	.post-container { 
+		background: @white;
+		.box-shadow(0 1px 2px @shadow);
+		.post-image-container {
+			position: relative;
+			overflow: auto;
+			
+			.post-image,
+			.post-image-grid { 
+				width: 848px;
+				height: 564px;
+			}
+			.post-image-grid { 
+				position: absolute; 
+				z-index: 2; top: 0; left: 0; 
+				background: url('../img/grid.png');
+				pointer-events: none;
+			}
+			.post-title {
+				.transition(all 150ms @easing);
+				position: absolute;
+				bottom: 60px;
+				left: 0px;
+				font-size: 30px;
+				background: rgba(0,0,0,.5);
+				max-width: 70%;
+				padding: 15px;
+				color: @white;
+				font-family: @font-family-title;
+				text-transform: uppercase;
+				font-weight: 200;
+				letter-spacing: 1.3px;
+				line-height: normal;
+				
+				&.start-closed { left: -70%; }
+			}
+			.post-likes {
+				.transition(all 250ms @easing);
+				.box-shadow(0 1px 2px @dark-shadow);
+				position: absolute;
+				float: left;
+				top: -10px;
+				right: 30px;
+				background: @blue;
+				padding: 25px 15px 10px;
+				color: @white;
+				text-align: center;
+				.value { padding-top: 5px; font-size: 12px; }
+				
+				&.start-closed { top: -100px; }
+				&:hover { top: 0px; text-decoration: none; }
+			}
+		}
+		.post-text {
+			padding: 30px;
+		}
+		.post-subtitle {
+			font-family: @font-family-title;
+			text-transform: uppercase;
+			font-weight: 200;
+			color: @blue;
+			font-size: 20px;
+			padding: 60px 30px 0;
+		}
+		
+		.post-comments-container {
+			padding: 0px 30px;
+			overflow: hidden;
+			
+			.post-comment {
+				.transition(all 500ms @easing);
+				position: relative;
+				padding: 20px 0px 20px 55px;
+				font-size: 14px;
+				line-height: 20px;
+				border-bottom: 1px dashed @line-color;
+				
+				.post-comment-image { 
+					position: absolute; top: 20px; left: 0px;
+					width: 40px; height: 40px;
+					border-radius: 40px;
+				}
+				
+				.post-comment-info {
+					font-size: 13px;
+					font-family: @font-family-title;
+					text-transform: uppercase;
+					font-weight: 200;
+	
+					.post-comment-user {
+						text-decoration: none;
+						color: @blue;
+						&:hover { text-decoration: none; }
+					}
+				}
+				
+				&.closed { .opacity(0); .scale(0); }
+			}
+			
+		}
+		.post-new-comment {
+			.transition(all 500ms @easing);
+			padding: 20px 0px 20px 55px;
+			.post-new-comment-textarea {
+				.transition(all 400ms @easing);
+				padding: 10px;
+				resize: none;
+				width: 100%;
+				height: 42px;
+				border: 1px solid @line-color;
+				border-radius: 4px;
+				font-family: @font-family;
+				font-weight: 300;
+				font-size: 14px;
+				color: @text-color;
+				line-height: 20px;
+				overflow: hidden;
+			}
+			.post-new-comment-actions {
+				padding: 10px 0;
+				text-align: right;
+			}
+			
+			&.closed { .opacity(0); .scale(0); }
+		}
+		
+		
+		.post-details-container { 
+			padding: 15px; 
+			color: @white;
+		}
+	}
+}
+
+.btn {
+	border-radius: 4px;
+	font-family: @font-family-title;
+	text-transform: uppercase;
+	font-weight: 200;
+
+	&.btn-primary{
+		border: none;
+		background: @blue;
+	}
+}

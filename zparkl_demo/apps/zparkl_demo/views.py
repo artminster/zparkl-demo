@@ -10,7 +10,7 @@ from artminster.core.utils.view_utils import MessageMixin
 Base zparkl_demo views 
 """
 class Home(TemplateView):
-	template_name = "zparkl_demo/home.html"
+	template_name = "zparkl_demo/home/index.html"
 
 	def get_context_data(self, **kwargs):
 		return {}
