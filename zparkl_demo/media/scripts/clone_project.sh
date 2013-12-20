@@ -10,10 +10,10 @@ if [ ! -d "${proj_path}" ]; then
 	
 	virtualenv "${proj_path}/env";
 	source "${proj_path}/env/bin/activate";
-	sudo pip install -r "${proj_path}/artminster/core/requirements.txt";
-	sudo pip install -r "${proj_path}/artminster/contrib/billing/requirements.txt";
-	sudo pip install -r "${proj_path}/allauth/requirements.txt";
-	sudo pip install -r "${proj_path}/requirements.txt";
+	pip install -r "${proj_path}/artminster/core/requirements.txt";
+	pip install -r "${proj_path}/artminster/contrib/billing/requirements.txt";
+	pip install -r "${proj_path}/allauth/requirements.txt";
+	pip install -r "${proj_path}/requirements.txt";
 	
 	echo "Create database and user 'zparkl_demo'"
 	psql -U postgres -h localhost -W < "${proj_path}/configs/common/createdb.sql";
