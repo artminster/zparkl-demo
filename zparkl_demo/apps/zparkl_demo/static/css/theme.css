@@ -6058,6 +6058,10 @@ body .zparkl-logo {
   width: 231px;
   height: 86px;
   background: url('../img/logo.png') no-repeat;
+  margin: 40px 0 20px;
+}
+body .download-container {
+  padding-top: 20px;
 }
 body .post-container {
   background: #ffffff;
