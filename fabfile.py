@@ -135,14 +135,13 @@ def install_requirements():
         run('pip install -E %(env_path)s -r %(repo_path)s/allauth/requirements.txt' % env)
         run('pip install -E %(env_path)s -r %(repo_path)s/requirements.txt' % env)
 
-def install_apache_conf():
+def install_supervisor_conf():
     """
-    Install the apache site config file.
+    Install the gunicorn site config file.
     """
-    sudo('rm -fr /etc/apache2/sites-enabled/%(project_name)s.conf' % env)
-    sudo('rm -fr /etc/apache2/sites-available/%(project_name)s.conf' % env)
-    sudo('ln -s %(repo_path)s/%(project_name)s/configs/%(settings)s/apache.conf /etc/apache2/sites-available/%(project_name)s.conf' % env)
-    sudo('ln -s /etc/apache2/sites-available/%(project_name)s.conf /etc/apache2/sites-enabled/%(project_name)s.conf' % env)
+    sudo('rm -fr /etc/supervisor/conf.d/%(project_name)s.conf' % env)
+    sudo('ln -s %(repo_path)s/%(project_name)s/configs/%(settings)s/supervisor.conf /etc/supervisor/conf.d/%(project_name)s.conf' % env)
+    sudo('chmod +x %(repo_path)s/%(project_name)s/configs/%(settings)s/server.sh' % env)
 
 def install_nginx_conf():
     """
@@ -164,27 +163,27 @@ Commands - deployment
 def deploy():
     """
     Deploy the latest version of the site to the server and restart Apache2.
-
+    
     Does not perform the functions of load_new_data().
     """
     require('settings', provided_by=[production, staging])
     require('branch', provided_by=[stable, master, branch])
-
+        
     checkout_latest()
     setup_symlinks()
-
+    
     # Run any South migrations
     with prefix('source %(env_path)s/bin/activate' % env):
         run('python %(repo_path)s/%(project_name)s/configs/%(settings)s/manage.py migrate;' % env)
-
-    reload_modwsgi()
+    
+    sudo('supervisorctl restart %(project_name)s' % env)
 
 def reload_webserver():
     """
     Restart the Apache2 server.
     """
+    sudo('supervisorctl restart %(project_name)s' % env)
     sudo('/etc/init.d/nginx restart')
-    sudo('/etc/init.d/apache2 restart')
 
 def reload_modwsgi():
     run('touch %(repo_path)s/%(project_name)s/configs/%(settings)s/%(settings)s.wsgi;' % env)

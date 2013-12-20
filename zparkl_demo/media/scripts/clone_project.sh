@@ -17,10 +17,7 @@ if [ ! -d "${proj_path}" ]; then
 	
 	echo "Create database and user 'zparkl_demo'"
 	psql -U postgres -h localhost -W < "${proj_path}/configs/common/createdb.sql";
-	
-	sh "${proj_path}/manage" syncdb --noinput;
-	sh "${proj_path}/manage" migrate;
-	sh "${proj_path}/manage" loaddata "${proj_path}/initial.json";
+	PGPASSWORD='zparkl_demo' psql zparkl_demo -U zparkl_demo < "${proj_path}/db.sql"
 fi
 
 echo "The project has been successfully cloned and setup locally. Goodbye :)"
