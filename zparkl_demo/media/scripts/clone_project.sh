@@ -6,8 +6,7 @@ echo
 proj_path="${PWD}/zparkl_demo";
 
 if [ ! -d "${proj_path}" ]; then
-	cd zparkl_demo;
-	git clone --recursive https://github.com/artminster/zparkl-demo.git;
+	git clone --recursive https://github.com/artminster/zparkl-demo.git zparkl_demo;
 	
 	virtualenv "${proj_path}/env";
 	source "${proj_path}/env/bin/activate";
