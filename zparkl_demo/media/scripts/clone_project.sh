@@ -15,11 +15,8 @@ if [ ! -d "${proj_path}" ]; then
 	sudo pip install -r "${proj_path}/allauth/requirements.txt";
 	sudo pip install -r "${proj_path}/requirements.txt";
 	
-	echo "Create database (use password 'zparkl_demo' for a quick win)"
-	
-	# Create database 
-	createuser -h localhost -S -D -R zparkl_demo;
-	createdb -h localhost -U postgres zparkl_demo;
+	echo "Create database and user 'zparkl_demo'"
+	psql -U postgres -h localhost -W < "${proj_path}/configs/common/createdb.sql";
 	
 	sh "${proj_path}/manage" syncdb --noinput;
 	sh "${proj_path}/manage" migrate;

@@ -5,7 +5,7 @@ Base configuration
 """
 env.project_name = 'zparkl_demo'
 env.python = 'python2.6'
-env.repository_url = 'ssh://git@github.com:artminster/zparkl-demo.git'
+env.repository_url = 'https://github.com/artminster/zparkl-demo.git'
 
 """
 Environments
@@ -15,9 +15,9 @@ def production():
     Work on production environment
     """
     env.settings = 'production'
-    env.user = 'artminster'
+    env.user = 'nmonteiro'
     env.hosts = ['nelsonmonteiro.net']
-    env.path = '/home/artminster/sites/%(project_name)s' % env
+    env.path = '/home/nmonteiro/sites/%(project_name)s' % env
     env.env_path = '%(path)s/env' % env
     env.repo_path = '%(path)s/repository' % env
     env.site_packages_path = '%(env_path)s/lib/python2.6/site-packages' % env
@@ -27,9 +27,9 @@ def staging():
     Work on staging environment
     """
     env.settings = 'staging'
-    env.user = 'artminster'
+    env.user = 'nmonteiro'
     env.hosts = ['staging.artminster.com']
-    env.path = '/home/artminster/sites/%(project_name)s' % env
+    env.path = '/home/nmonteiro/sites/%(project_name)s' % env
     env.env_path = '%(path)s/env' % env
     env.repo_path = '%(path)s/repository' % env
     env.site_packages_path = '%(env_path)s/lib/python2.6/site-packages' % env
@@ -99,7 +99,7 @@ def setup_directories():
     """
     run('mkdir -p %(path)s' % env)
     run('mkdir -p %(env_path)s' % env)
-    run('mkdir -p /home/artminster/logs/' % env)
+    run('mkdir -p /home/nmonteiro/logs/' % env)
 
 def setup_virtualenv():
     """
