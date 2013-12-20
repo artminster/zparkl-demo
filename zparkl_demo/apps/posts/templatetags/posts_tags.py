@@ -6,6 +6,5 @@ register = template.Library()
 
 @register.assignment_tag
 def get_post():
-    print Post.objects.latest('id').get_comments()
     return random.choice(list(Post.objects.all()))
 
